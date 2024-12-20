@@ -104,6 +104,6 @@ class Net(BaseModel):
     
     def optimizerAndScheduler( self ):
         # Define optimizer and loss
-        optimizer = optim.SGD(self.parameters(), lr=0.012, momentum=0.9, weight_decay=0.005)
-        scheduler = StepLR(optimizer, step_size=3, gamma=0.3)
+        optimizer = optim.SGD(self.parameters(), lr=0.014, momentum=0.9, weight_decay=0.005)
+        scheduler = StepLR(optimizer, step_size=3, gamma=0.2)
         return optimizer,scheduler

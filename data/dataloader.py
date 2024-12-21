@@ -7,14 +7,13 @@ ssl._create_default_https_context = ssl._create_unverified_context  # Bypass SSL
 def get_dataloaders(batch_size, num_workers, cuda):
     train_transforms = transforms.Compose([
         # Random rotation (e.g., rotate images by -10 to +10 degrees)
-        transforms.RandomRotation(degrees=15),
+        transforms.RandomRotation((-7.0, 7.0)),
     
         # Random horizontal flip with 50% probability
         #transforms.RandomHorizontalFlip(p=0.5),
     
         # Random affine transformation with slight shifts, rotation, and scaling
-        transforms.RandomAffine(degrees=15, translate=(0.1, 0.1), scale=(0.8, 1.2)),
-    
+        transforms.RandomAffine(degrees=10, translate=(0.1, 0.1), scale=(0.85, 1.15)),
         # Convert to tensor and normalize as before
         transforms.ToTensor(),
         transforms.Normalize((0.1307,), (0.3081,))

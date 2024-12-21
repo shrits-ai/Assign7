@@ -24,7 +24,7 @@ import torch.optim as optim
 class Net(BaseModel):
     def __init__(self):
         super(Net, self).__init__()
-        dropout_val = 0.05
+        dropout_val = 0.001
 
         # Input Block
         self.convblock1 = nn.Sequential(
@@ -59,6 +59,7 @@ class Net(BaseModel):
             nn.Conv2d(in_channels=8, out_channels=16, kernel_size=(3, 3), padding=1, bias=False),  # Increased filters a little
             nn.ReLU(),
             nn.BatchNorm2d(16),  # Batch Normalization
+            nn.Dropout(dropout_val)
         )  # output_size = 10 | RF = 14
 
         self.convblock6 = nn.Sequential(

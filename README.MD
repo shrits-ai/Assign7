@@ -96,15 +96,19 @@ Accuracy 99.4 is not achieved.
 ```
 
 ```
-File:  AssignS7F6PlayWithLRAndScheduler.py
-Play with LR and schedulers.
+File:  AssignS7F5RegularizationCode.py
+Model was highly underfit. Removed dropout layer. Added extra layer and max pool to reduce underfitting and keep parameters under 8k.
+changed optimizer to adam for faster convergence and 
+scheduler to ReduceLROnPlateau to reduce learning rate when test accuracy plateaus.
+tune image augmentation parameter to increase accuracy.
+reduced batch size to 64 to increase accuracy.
 Results:
-Parameters: 7628
-Best Train Accuracy: 98.81
-Best Test Accuracy: 99.25 ( epoch 14 )
+Parameters: 7710
+Best Train Accuracy: 98.59
+Best Test Accuracy: 99.47 ( epoch 13 )
 Analysis:
 The model also fits in the parameter requirement i.e. < 8k and epoch <= 15
-Model is underfit now. Training if for more epoch might reach to expected accuracy.
-Accuracy 99.4 is not achieved.
+training and test accuracy was converging faster and underfit issue is not seen now.
+test accuracy was around 99.4 from epoch 12 and was consistent.
 ```
 

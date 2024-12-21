@@ -8,12 +8,12 @@ tune image augmentation parameter to increase accuracy.
 reduced batch size to 64 to increase accuracy.
 Results:
 Parameters: 7710
-Best Train Accuracy: 98.67
-Best Test Accuracy: 99.41 ( epoch 14 )
+Best Train Accuracy: 98.59
+Best Test Accuracy: 99.47 ( epoch 13 )
 Analysis:
 The model also fits in the parameter requirement i.e. < 8k and epoch <= 15
 training and test accuracy was converging faster and underfit issue is not seen now.
-test accuracy was around 99.2 from epoch 10 and gradually increased to 99.41 in epoch 14.
+test accuracy was around 99.4 from epoch 12 and was consistent.
 """
 from models.base_model import BaseModel
 import torch.nn as nn
@@ -24,7 +24,7 @@ import torch.optim as optim
 class Net(BaseModel):
     def __init__(self):
         super(Net, self).__init__()
-        dropout_val = 0.001
+        dropout_val = 0.0001
 
         # Input Block
         self.convblock1 = nn.Sequential(
@@ -103,7 +103,7 @@ class Net(BaseModel):
         # Define optimizer and loss
         #optimizer = optim.SGD(self.parameters(), lr=0.001, momentum=0.9, weight_decay=0.0001)
             # Use Adam optimizer for better convergence
-        optimizer = optim.Adam(self.parameters(), lr=0.0011, weight_decay=0.0001)
+        optimizer = optim.Adam(self.parameters(), lr=0.00115, weight_decay=0.0001)
     
         # Reduce learning rate when validation accuracy plateaus
         scheduler = ReduceLROnPlateau(optimizer, 'min', patience=3, factor=0.2, verbose=True)
